@@ -1,0 +1,9 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+    name: cluster-services
+manifests:
+    rawYaml:
+        - https://raw.githubusercontent.com/traefik/traefik/v2.11/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
+deploy:
+    kubectl: {}

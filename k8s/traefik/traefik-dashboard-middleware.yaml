@@ -1,0 +1,10 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+    name: dashboard-redirect
+    namespace: ${TRAEFIK_DASHBOARD_NAMESPACE}
+spec:
+    redirectRegex:
+        regex: "^https?://${TRAEFIK_DASHBOARD_HOSTNAME}/$"
+        replacement: "https://${TRAEFIK_DASHBOARD_HOSTNAME}/dashboard/"
+        permanent: true

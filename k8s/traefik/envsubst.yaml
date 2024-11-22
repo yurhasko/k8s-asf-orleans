@@ -1,0 +1,7 @@
+kind: envsubst
+metadata:
+    name: envsubst
+    annotations:
+        config.kubernetes.io/function: |
+            exec:
+              path: envsubst

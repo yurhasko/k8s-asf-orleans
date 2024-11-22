@@ -1,0 +1,43 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+    name: cert-manager
+deploy:
+    helm:
+        releases:
+            - name: cert-manager
+              remoteChart: cert-manager
+              upgradeOnChange: true
+              repo: https://charts.jetstack.io/
+              version: 1.13.3
+              namespace: kube-system
+              setValueTemplates:
+                  installCRDs: true
+
+---
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: traefik
+manifests:
+  kustomize:
+    buildArgs: ["--enable-alpha-plugins", "--enable-exec"]
+    paths:
+      - ./traefik
+deploy:
+  kubectl: {}
+
+
+
+---
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: external-dns
+manifests:
+  kustomize:
+    buildArgs: ["--enable-alpha-plugins", "--enable-exec"]
+    paths:
+      - ./external-dns
+deploy:
+  kubectl: {}

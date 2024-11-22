@@ -1,3 +1,4 @@
+# Ignore Terraform / Terragrunt stuff
 *.tfstate
 *.tfstate.*
 crash.log
@@ -19,3 +20,10 @@ crash.log
 *.bak
 *.tmp
 .terragrunt-cache/
+
+# ignore Helm charts that are automatically downloaded during Skaffold execution 
+**/charts/
+.aider*
+.pnpm-store
+.gituntracked
+

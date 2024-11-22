@@ -1,0 +1,7 @@
+provider: cloudflare
+cloudflare:
+    secretName: cloudflare-api-key-secret
+    proxied: false
+domainFilters:
+    - yrhsk.work
+logLevel: info
