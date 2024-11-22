@@ -27,6 +27,8 @@ manifests:
 deploy:
   kubectl: {}
 
+
+
 ---
 apiVersion: skaffold/v4beta8
 kind: Config
