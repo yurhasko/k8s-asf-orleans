@@ -5,5 +5,7 @@ metadata:
 manifests:
     rawYaml:
         - https://raw.githubusercontent.com/traefik/traefik/v2.11/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
+        - https://raw.githubusercontent.com/OrleansContrib/Orleans.Clustering.Kubernetes/refs/heads/master/src/Orleans.Clustering.Kubernetes/Definitions/ClusterVersionCRD.yaml
+        - https://raw.githubusercontent.com/OrleansContrib/Orleans.Clustering.Kubernetes/refs/heads/master/src/Orleans.Clustering.Kubernetes/Definitions/SiloEntryCRD.yaml
 deploy:
     kubectl: {}

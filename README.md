@@ -14,6 +14,12 @@ Note that the terraform state is stored locally for simplicity, since we won't n
 az aks get-credentials --resource-group az-acr-rg --name webproject-dev-aks
 ```
 
+3) Attach permissions to pull from ACR to AKS cluster
+
+```bash
+az aks update -n webproject-dev-aks -g az-acr-rg --attach-acr webprojectdev
+```
+
 3) Export env vars for system setup
 
 ```
