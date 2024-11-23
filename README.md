@@ -48,3 +48,9 @@ docker build -f output/KubeClient/Dockerfile -t kubeclient output/KubeClient
 docker build -f output/KubeGatewayHost/Dockerfile -t kubegateway output/KubeGatewayHost
 docker build -f output/KubeSiloHost/Dockerfile -t kubesilo output/KubeSiloHost
 ```
+
+Access Grafana dashboard
+
+```bash
+kubectl port-forward svc/kube-prometheus-stack-grafana 8080:80 -n monitoring
+```
