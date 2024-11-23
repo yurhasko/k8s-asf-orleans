@@ -1,0 +1,31 @@
+name: Deploy Helm Chart
+
+on:
+  workflow_dispatch:
+    inputs:
+      semver:
+        description: 'Semantic version of the application'
+        required: true
+        default: '1.0.0'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Kubernetes
+      uses: azure/setup-kubectl@v1
+      with:
+        version: 'latest'
+
+    - name: Configure Kubeconfig
+      env:
+        KUBECONFIG: ${{ secrets.K8S_KUBECONFIG }}
+      run: echo "${KUBECONFIG}" > $HOME/.kube/config
+
+    - name: Deploy Helm Chart
+      run: |
+        helm upgrade --install orleans ./app-charts/orleans-deployment --namespace orleans
