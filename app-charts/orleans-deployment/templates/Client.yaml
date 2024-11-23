@@ -17,5 +17,5 @@ spec:
       serviceAccountName: orleansclient
       containers:
         - name: orleansclient
-          image: {{ printf "%s:%s" .Values.repository "kube-client" }}
+          image: webprojectdev.azurecr.io/kube-silo-host:0.1.9
           imagePullPolicy: Always
