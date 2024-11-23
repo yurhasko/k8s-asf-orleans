@@ -13,6 +13,11 @@ terraform {
   source = "../../..//modules/acr"
 }
 
+dependency "aks" {
+  config_path = "../aks"
+}
+
+
 inputs = {
   create_resource_group     = true
   az_acr_rg_name            = "az-acr-rg"
@@ -21,4 +26,5 @@ inputs = {
   acr_sku                   = "Premium"
   admin_enabled             = true
   acr_public_network_access = true
+  kubelet_identity = dependency.aks.outputs.kubelet_identity
 }

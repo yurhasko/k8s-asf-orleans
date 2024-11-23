@@ -20,3 +20,8 @@ output "kubeconfig" {
   value     = azurerm_kubernetes_cluster.az-aks-cluster.kube_config_raw
   sensitive = true
 }
+
+output "kubelet_identity" { 
+  value = azurerm_kubernetes_cluster.az-aks-cluster.kubelet_identity[0].object_id
+  sensitive = true
+}

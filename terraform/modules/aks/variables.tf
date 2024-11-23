@@ -42,19 +42,8 @@ variable "az_aks_node_vm_size" {
   default     = "Standard_E4_v3"
 }
 
-variable "associate_with_acr" {
-  description = "A boolean flag to decide whether to associate AKS with ACR"
-  type        = bool
-  default     = false
-}
-
 variable "rbac_enabled" {
   description = "A boolean flag to decide whether to enable RBAC in AKS cluster"
   type        = bool
   default     = true
-}
-
-variable "acr_id" {
-  description = "The ID of the Azure Container Registry to associate with AKS cluster. Should be passed from ACR module output."
-  type        = string
 }

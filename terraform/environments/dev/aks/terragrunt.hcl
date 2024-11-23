@@ -13,20 +13,14 @@ terraform {
   source = "../../..//modules/aks"
 }
 
-dependency "acr" {
-  config_path = "../acr"
-}
-
 inputs = {
   create_resource_group       = false
-  az_aks_rg_name              = dependency.acr.outputs.resource_group_name
+  az_aks_rg_name              = "az-acr-rg"
   location                    = local.azure_location
   az_aks_cluster_name         = "webproject-${local.environment}-aks"
   az_aks_dns_prefix           = "wp-${local.environment}"
   aks_default_agent_pool_name = "defaultpool"
-  az_aks_node_count           = 2
-  az_aks_node_vm_size         = "Standard_B2pls_v2"
-  associate_with_acr          = true
-  acr_id                      = dependency.acr.outputs.acr_id
+  az_aks_node_count           = 1
+  az_aks_node_vm_size         = "Standard_M8-2ms"
   rbac_enabled                = true
 }

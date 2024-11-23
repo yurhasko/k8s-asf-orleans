@@ -41,3 +41,8 @@ variable "acr_public_network_access" {
   type        = bool
   default     = true
 }
+
+variable "kubelet_identity" {
+  description = "The kubelet identity."
+  type        = string
+}

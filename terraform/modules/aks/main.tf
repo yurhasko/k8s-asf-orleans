@@ -40,30 +40,16 @@ resource "azurerm_kubernetes_cluster" "az-aks-cluster" {
 
   default_node_pool {
     name                        = var.aks_default_agent_pool_name
-    node_count                  = var.az_aks_node_count
+    enable_auto_scaling = true
+    max_count = 2
+    min_count = 1
     vm_size                     = var.az_aks_node_vm_size
     temporary_name_for_rotation = "temppool"
   }
-
-
 
   identity {
     type = "SystemAssigned"
   }
 
   role_based_access_control_enabled = var.rbac_enabled
-}
-
-/*
- * Assigns the 'AcrPull' role to the AKS cluster.
- *
- * This resource assigns the 'AcrPull' role to the AKS cluster, which allows the AKS cluster to pull images from the Azure Container Registry.
- * Depends on specifying "associate_with_acr" variable.
- */
-resource "azurerm_role_assignment" "az-aks-acr-role-assignment" {
-  count                            = var.associate_with_acr ? 1 : 0
-  principal_id                     = azurerm_kubernetes_cluster.az-aks-cluster.kubelet_identity[0].object_id
-  role_definition_name             = "AcrPull"
-  scope                            = var.acr_id
-  skip_service_principal_aad_check = true
 }

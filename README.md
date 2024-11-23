@@ -30,3 +30,21 @@ IMAGE_TAG
 TRAEFIK_USER
 TRAEFIK_PWD
 ```
+
+From the samples/ directory, run the following commands to publish the .Net Core applications:
+
+```sh
+dotnet publish -c Release KubeClient -o output/KubeClient
+dotnet publish -c Release KubeGatewayHost -o output/KubeGatewayHost
+dotnet publish -c Release KubeSiloHost -o output/KubeSiloHost
+```
+
+Each project contains a regular Dockerfile which must be built to a Docker image just like a regular docker application.
+
+To build the images, run the following commands from the samples/ directory:
+
+```sh
+docker build -f output/KubeClient/Dockerfile -t kubeclient output/KubeClient
+docker build -f output/KubeGatewayHost/Dockerfile -t kubegateway output/KubeGatewayHost
+docker build -f output/KubeSiloHost/Dockerfile -t kubesilo output/KubeSiloHost
+```
